@@ -1,0 +1,19 @@
+/*
+
+*/
+
+private int calculateHexdecimal(String letter){
+	int result = 0;
+	for(int i = 0; i < letter.length(); i++){
+		int numdecimal = 0;
+		char ch = letter.charAt(i);
+		if(ch >= '0' && ch <= '9')
+			numdecimal = ch - '0';
+		else if(ch >= 'a' && ch <= 'f')
+			numdecimal = ch - 'a' + 10;
+		else
+			println("Error Format");
+		result = (result * 16 + numdecimal);
+	}
+	return result;
+}
