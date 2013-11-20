@@ -1,23 +1,18 @@
 /*
- * File: FindRange.java
+ * File: FindSecondLargest.java
  * Name: 
  * Section Leader: 
  * --------------------
- * This file receives a list of values input by the user. And outputs the smallest and largest values.
- * If the user inputs "0", the output will indicate that there is no range, 
- * since the smallest and largest values are subsequently 0.
  */
 
 import acm.program.*;
 
-public class FindRange extends ConsoleProgram {
+public class FindSecondLargest extends ConsoleProgram {
 	private static final int SENTINEL = 0;
 	public void run() {
 		
-		int test = calculateHexdecimal("f1");
-		println(test);
-		
 		println("This program finds the largest and smallest numbers.");
+		
 		int val = readInt("? ");
 
 		//the first value entered is set as the smallest and largest
@@ -42,23 +37,5 @@ public class FindRange extends ConsoleProgram {
 		}
 		println("smallest: " + smallest);
 		println("largest: " + largest);
-	}
-	
-	private int calculateHexdecimal(String letter){
-		int result = 0;
-
-		for(int i = 0; i < letter.length(); i++){
-			int numdecimal = 0;
-			char ch = letter.charAt(i);
-			if(ch >= '0' && ch <= '9')
-				numdecimal = ch - '0';
-			else if(ch >= 'a' && ch <= 'f')
-				numdecimal = ch - 'a' + 10;
-			else
-				println("Error Format");
-			result = (result * 16 + numdecimal);
-		}
-
-		return result;
 	}
 }
