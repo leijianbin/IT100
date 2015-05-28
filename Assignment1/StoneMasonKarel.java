@@ -11,75 +11,67 @@
 import stanford.karel.*;
 
 public class StoneMasonKarel extends SuperKarel {
-	/* Precondition: Karel standing at the start of the column.
-	 * Postcondition: Karel is at the end of the column, with all the 
-	 * columns is repaired.  
-	 */
-/*
- * Stone
- * */
+
+	// You fill in this part
 	public void run(){
-		
+		moveToArchTop();//
 		while(frontIsClear()){
-			
-			repair();
-			moveToNext();
-			
+			if(!leftIsClear())
+			{
+				fixArchStone();//
+			}
+			move();
 		}
-		repair();
-		
-	}	
-	/* Pre-condition: Facing east at 1st street and 1st avenue.
-	 * Post-condition: Facing east at the end of the volumn.
-	 */
-	
-	private void repair(){
-		ascend();
-		descend();	
+		fixArchStone();
+		moveToArchBottom();
 	}
 	
-	/*
-	 * Pre-condition: Facing East at 1st street and 1st avenue
-	 * Post-condition: Facing South just below the arc.
-	 */
-   private void ascend(){
-	   turnLeft();
-	   while(frontIsClear()){
-		   putSafeBeeper();
-		  move();
-		   
-	   }
-	   putSafeBeeper();
-	   turnAround();
-
-   }
-   /* To avoid the beeper in each corner is more than one,
-    * safeBeeper can guarantee every corner have one beeper.
-    */
-   
-   private void putSafeBeeper(){
-		if(noBeepersPresent()){
+	private void moveToArchTop(){
+		ascend();
+	}
+	private void moveToArchBottom(){
+		descend();
+	}
+	
+	private void fixArchStone(){
+		//pre: facing east
+		//post: facing east
+		descend();	
+		ascendWithBeeper();
+	}
+	
+	private void ascendWithBeeper(){
+		turnLeft();
+		while(frontIsClear()){
+			safePutBeeper();
+			move();
+		}
+		safePutBeeper();
+		turnRight();
+	}
+	
+	private void ascend()
+	{
+		turnLeft();
+		while(frontIsClear()){
+			move();
+		}
+		turnRight();
+	}
+	
+	private void descend()
+	{
+		turnRight();
+		while(frontIsClear()){
+			move();
+		}
+		turnLeft();
+	}
+	
+	private void safePutBeeper(){
+		if(noBeepersPresent())
+		{
 			putBeeper();
 		}
-	}	
-   
-   /* Pre-condition: Facing South just below the arc.
-    * Post-condition: Facing east at the 1st street.
-    */
-   private void descend(){
-	while(frontIsClear()){
-		move();
 	}
-	turnLeft();   
-}   
-	/* when karel came back from reparing, 
-	 * he should move to another workpalce.	
-	 */
-   private void moveToNext(){
-	   move();
-	   move();
-	   move();
-	   move();
-   }
-	
 }
